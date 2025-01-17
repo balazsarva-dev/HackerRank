@@ -1,40 +1,33 @@
 import sys
-from collections import defaultdict
 
-def make_def_and_rev_dicts(n: int)-> tuple[dict, dict]:
-    
-    pages_in_a_book = defaultdict(tuple)
-    page = 0
-    
-    for idx in range(n+1):
-        pages_in_a_book[idx] += (page, page + 1)
-        page += 2
+def get_valid_number(condition) -> int:
+    while True:
+        try:
+            n = int(input())
+            if condition(n):
+                return n
+            else:
+                print('The input is invalid! Try again! ')
+        except ValueError:
+            print('You need to input an integer! Try again! ')
         
-    for key in pages_in_a_book.copy():
-        if pages_in_a_book[key][0] > n:
-            del pages_in_a_book[key]
-        
-    reversed_book = dict(reversed(list(pages_in_a_book.items())))
-    
-    return pages_in_a_book, reversed_book
+def open_a_book(n: int) -> tuple[dict, dict]:
+    book = {idx : (page, page + 1) for idx, page in enumerate(range(0, n + 1, 2))}
+    book = {k : v for k, v in book.items() if v[0] <= n}
+    return book
 
-def search_key(D: dict, p: int, straight_or_reversed: str=None):
-    result = []
-    for key in D:
-        if p in D[key]:
-            if straight_or_reversed is None:
-                result.append(key)
-            elif straight_or_reversed == 'reverse':
-                result.append(max(D.keys()) - key)
-    return result
+def search_key(D: dict, p: int, straight_or_reversed: str = None) -> list:
+    if straight_or_reversed == 'reverse':
+        D = dict(reversed(list(D.items())))
+        return [max(D.keys()) - key for key in D if p in D[key]]
+    return [key for key in D if p in D[key]]
 
 if __name__ == '__main__':
     fptr = sys.stdout
-    n = int(input().strip())
-    p = int(input().strip())
-    result = make_def_and_rev_dicts(n)
-    one_val, two_val = search_key(result[0], p), search_key(result[-1], p, 'reverse')
-    result = [one_val, two_val]
+    n = get_valid_number(lambda x: 1 <= x <= 10**5)
+    p = get_valid_number(lambda x: 1 <= x <= n)
+    result = open_a_book(n)
+    result = [search_key(result, p), search_key(result, p, 'reverse')]
     result = min(result)
     fptr.write(str(result[0]) + '\n')
     fptr.close()
