@@ -1,4 +1,5 @@
 from collections import deque
+from typing import Deque
 
 def get_valid_number(prompt: str, min_value: int, max_value: int) -> int:
     while True:
@@ -11,7 +12,7 @@ def get_valid_number(prompt: str, min_value: int, max_value: int) -> int:
         except ValueError:
             print('Invalid value! Try again with integer! ')
 
-def make_a_deque(expected_length: int = 1) -> deque:
+def make_a_deque(expected_length: int = 1) -> Deque[int]:
     while True:
         try:
             values = list(map(int, input().split()))
@@ -22,7 +23,8 @@ def make_a_deque(expected_length: int = 1) -> deque:
         except ValueError:
             print('Invalid input. Please enter integers only.')
 
-def pop_left_right(some_deque: deque, empty: deque) -> deque:
+def pop_left_right(some_deque: Deque[int]) -> Deque[int]:
+    empty = deque()
     while some_deque:
         empty.append(some_deque.pop() if some_deque[0] <= some_deque[-1] else some_deque.popleft())
     return empty
@@ -32,7 +34,7 @@ if __name__ == '__main__':
     for _ in range(T):
         number_of_cubes = get_valid_number('Enter the number of cubes: ', 1, 10**5)
         some_deque = make_a_deque(number_of_cubes)
-        empty:deque[int] = deque()
         max_value, min_value = max(some_deque), min(some_deque)
-        result = pop_left_right(some_deque, empty)
-        print('Yes' if result[0] == max_value and result[-1] == min_value else 'No')
+        result = pop_left_right(some_deque)
+        condition = all([result[0] == max_value, result[-1] == min_value])
+        print('Yes' if condition else 'No')
