@@ -1,25 +1,16 @@
 import calendar
 
-month, day, year = input().split()
-day == day[-1] if day in ['0'+str(i) for i in range(1, 10)] else day
-month == month[-1] if month in ['0'+str(i) for i in range(1, 10)] else month
-    
-days = {1:'MONDAY', 2:'TUESDAY', 3:'WEDNESDAY', 4:'THURSDAY', 5:'FRIDAY', 6:'SATURADAY', 7:'SUNDAY'}
-
-counter = 0
-for val in calendar.TextCalendar(firstweekday=7).monthdatescalendar(int(year), int(month)):
-    for value in val:
-        counter += 1
-        value = str(value)
-        if value[5:7] == month and value[-2:] == day:
-            print(days[counter%7])
-            
-import calendar
-
-month, day, year = input().split()
-day == day[-1] if day in ['0'+str(i) for i in range(1, 10)] else day
-month == month[-1] if month in ['0'+str(i) for i in range(1, 10)] else month
-    
-days = {1:'MONDAY', 2:'TUESDAY', 3:'WEDNESDAY', 4:'THURSDAY', 5:'FRIDAY', 6:'SATURDAY', 7:'SUNDAY'}
-
-print(days[calendar.weekday(int(year), int(month), int(day))+1])
+while True:
+    try:
+        date_inputs = list(map(int, input().split()))
+        if len(date_inputs) != 3:
+            print('Invalid input! You must enter day, month, year! ')
+            continue
+        month, day, year = date_inputs
+        if  month in range(1, 13) and day in range(1, 32) and year in range(2000, 3001):
+            days = dict(enumerate(['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']))
+            print(days[calendar.weekday(year, month, day)])
+            break
+        print('Invalid input! The day must be in the range of 1 to 31, the month must be in the range of 1 to 12, and the year must be in the range of 2000 to 3000! ')
+    except ValueError:
+        print('Invalid input! You must enter integers! ')
