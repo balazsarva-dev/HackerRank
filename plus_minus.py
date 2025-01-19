@@ -1,17 +1,16 @@
-def plusMinus(arr):
-    positives = 0
-    negatives = 0
-    zeros = 0
-    for num in arr:
-        if num > 0: positives += 1
-        elif num < 0: negatives += 1
-        else: zeros += 1
-    return [positives, negatives, zeros]
-    
-    
+def plusMinus(arr: list) -> list:
+    positives, negatives, zeros = [n for n in arr if n > 0], [n for n in arr if n < 0], [n for n in arr if n == 0]
+    f = lambda x: len(x) / len(arr)
+    return [f(positives), f(negatives), f(zeros)]
+
 if __name__ == '__main__':
-    n = int(input().strip())
-    arr = list(map(int, input().rstrip().split()))
+    while True:
+        n = int(input())
+        if n in range(1, 101):
+            break
+    while True:
+        arr = list(map(int, input().split()))
+        if len(arr) == n and all(x in range(-100, 101) for x in arr):
+            break
     res = plusMinus(arr)
-    for num in res:
-        print(f'{num/len(arr):.6f}')
+    for num in res: print(f'{num:.6f}')
