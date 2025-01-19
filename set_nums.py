@@ -1,4 +1,4 @@
-from typing import Callable, Union, List, Set
+from typing import Callable, List, Set
 
 def get_valid_list_or_set(length: int, collection_type: str, condition: Callable) -> List[int] | Set[int]:
     while True:
