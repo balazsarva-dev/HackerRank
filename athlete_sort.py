@@ -12,8 +12,7 @@ class Valid:
                 if valid_number in range(min_value, max_value+1):
                     self.__number = valid_number
                     return
-                else:
-                    print(f'Out of range! Enter a number from {min_value} to {max_value}! ')
+                print(f'Out of range! Enter a number from {min_value} to {max_value}! ')
             except ValueError:
                 print('Invalid value! Only integer is allowed! ')
     

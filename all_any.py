@@ -11,7 +11,6 @@ def get_valid_number(min_value: int, max_value: int) -> int:
             print('Only integer is allowed! Try again! ')
             
 def get_integer_values(expected_length: int) -> List[int]:        
-    some_list: List[int] = []
     while True:
         values = input(f'Create a list! Its length must be {expected_length}! ').split()
         if len(values) != expected_length:
@@ -19,8 +18,7 @@ def get_integer_values(expected_length: int) -> List[int]:
             continue
         try:
             int_values = list(map(int, values))
-            some_list = int_values
-            return some_list
+            return int_values
         except ValueError:
             print('All elements must be integers! Try again! ')
             
