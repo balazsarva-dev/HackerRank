@@ -17,7 +17,7 @@ def make_a_list(lenght: int, min_val: int, max_val: int) -> list:
             except ValueError:
                 print('Only integer is allowed! ')
                 
-def getMoneySpent(keyboards: list, drives: list, b: int)-> int:
+def getMoneySpent(keyboards: list, drives: list, b: int) -> int:
     return max((s for s in (sum(pair) for pair in product(keyboards, drives)) if s <= b), default=-1)
             
 if __name__ == '__main__':

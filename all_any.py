@@ -10,7 +10,7 @@ def get_valid_number(min_value: int, max_value: int) -> int:
         except ValueError:
             print('Only integer is allowed! Try again! ')
             
-def get_integer_values(expected_length: int) -> list:        
+def get_integer_values(expected_length: int) -> List[int]:        
     some_list: List[int] = []
     while True:
         values = input(f'Create a list! Its length must be {expected_length}! ').split()

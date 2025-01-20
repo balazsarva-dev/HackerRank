@@ -1,10 +1,10 @@
 import operator
-from typing import List
+from typing import List, Optional
 
 class Valid:
     number_of_instances = 0
     
-    def set_a_number(self, prompt: str, min_value: int, max_value: int, input_value: str | None = None) -> None:
+    def set_a_number(self, prompt: str, min_value: int, max_value: int, input_value: Optional[str] = None) -> None:
         Valid.number_of_instances += 1
         while True:
             try:
@@ -20,7 +20,7 @@ class Valid:
     def get_a_number(self) -> int:
         return self.__number
     
-    def set_a_list(self, prompt: str, length: int, min_value: int, max_value: int, input_values: str | None = None) -> None:
+    def set_a_list(self, prompt: str, length: int, min_value: int, max_value: int, input_values: Optional[str] = None) -> None:
         Valid.number_of_instances += 1
         while True:
             values = (input_values if input_values is not None else input(prompt)).split()
