@@ -9,8 +9,7 @@ def get_valid_list_or_set(prompt: str, length: int, collection_type: str, condit
                     return values
                 elif collection_type == 'set':
                     return set(values)
-                else:
-                    raise ValueError('Invalid collection type! ')
+                raise ValueError('Invalid collection type! ')
         except ValueError:
             print('Invalid value! Try again with integers! ')
 
