@@ -15,7 +15,7 @@ def get_valid_list_or_set(prompt: str, length: int, collection_type: str, condit
             print('Invalid value! Try again with integers! ')
 
 if __name__ == '__main__':
-    n, m = get_valid_list_or_set('Enter the length of the list and 2 sets: ', 2, 'list', lambda x: all(value in range(1, 10**5+1) for value in x))
+    n, m = get_valid_list_or_set('Length of 1 list and length of 2 sets: ', 2, 'list', lambda x: all(value in range(1, 10**5+1) for value in x))
     common_condition = lambda x: all(value in range(1, 10**9+1) for value in x)
     list_A = get_valid_list_or_set('Values of the list: ', n, 'list', common_condition)
     set_A = get_valid_list_or_set('Values of the first set: ', m, 'set', common_condition)
