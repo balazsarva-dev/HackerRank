@@ -1,5 +1,6 @@
+from collections import defaultdict
+
 if __name__ == '__main__':
-    from collections import defaultdict
     n, m = map(int, input().split())
     dict_positions = defaultdict(list)
     for i in range(n):

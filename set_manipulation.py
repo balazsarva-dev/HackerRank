@@ -1,7 +1,7 @@
-from typing import Dict, Set
+from typing import Dict, Set, Callable
 
 def make_a_set(expected_length: int) -> Set[int]:
-    some_set = set()
+    some_set: Set[int] = set()
     while len(some_set) != expected_length:
         try:
             values = set(map(int, input(f'Enter {expected_length} integers: ').split()))
@@ -12,7 +12,7 @@ def make_a_set(expected_length: int) -> Set[int]:
             print('Invalid value, try again!')
     return some_set
 
-def take_actions(some_set: Set[int]) -> Dict[str, callable]:
+def take_actions(some_set: Set[int]) -> Dict[str, Callable]:
     return {
         'intersection_update': some_set.intersection_update,
         'update': some_set.update,

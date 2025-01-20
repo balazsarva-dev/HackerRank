@@ -1,7 +1,7 @@
 import numpy as np
-from typing import Callable
+from typing import Callable, List
 
-def get_valid_list(prompt: str, expected_length: int, other_condition: Callable) -> list:
+def get_valid_list(prompt: str, expected_length: int, other_condition: Callable | None = None) -> List[int]:
     while True:
         try:
             numbers = list(map(int, input(prompt).split()))
@@ -9,7 +9,7 @@ def get_valid_list(prompt: str, expected_length: int, other_condition: Callable)
             print(f'Your list must have {expected_length} values! Try again! ')
         except ValueError: print('Invalid value! Try again with integers! ')
 
-def reshape_array_with_specified_rows_and_columns(some_list: list) -> np.array:
+def reshape_array_with_specified_rows_and_columns(some_list: List[int]) -> np.ndarray:
     while True:
         try:
             rows = int(input('Enter the number of rows: '))

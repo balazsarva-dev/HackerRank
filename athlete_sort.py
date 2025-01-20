@@ -1,9 +1,10 @@
 import operator
+from typing import List
 
 class Valid:
     number_of_instances = 0
     
-    def set_a_number(self, prompt: str, min_value: int, max_value: int, input_value: str = None) -> None:
+    def set_a_number(self, prompt: str, min_value: int, max_value: int, input_value: str | None = None) -> None:
         Valid.number_of_instances += 1
         while True:
             try:
@@ -19,7 +20,7 @@ class Valid:
     def get_a_number(self) -> int:
         return self.__number
     
-    def set_a_list(self, prompt: str, length: int, min_value: int, max_value: int, input_values: str = None) -> None:
+    def set_a_list(self, prompt: str, length: int, min_value: int, max_value: int, input_values: str | None = None) -> None:
         Valid.number_of_instances += 1
         while True:
             values = (input_values if input_values is not None else input(prompt)).split()
@@ -35,7 +36,7 @@ class Valid:
             except ValueError:
                 print('Only integer is allowed! Try again! ')
 
-    def get_a_list(self) -> list:
+    def get_a_list(self) -> List[int]:
         return self.__final
 
     def set_a_string(self, prompt, *args) -> None:
@@ -56,7 +57,7 @@ class Process:
         self.valid.set_a_string('Do you want to play? (yes/no) ', 'yes', 'no')
         return self.valid.get_a_string() == 'yes'
     
-    def settings(self):
+    def settings(self) -> None:
         self.valid.set_a_number('Enter the number of athletes (2-1000): ', 1, 1000)
         self.athletes = self.valid.get_a_number()
         self.valid.set_a_number('Enter the number of attributes (0-1000): ', 1, 1000)
@@ -68,7 +69,7 @@ class Process:
         self.valid.set_a_number('Enter the attribute to sort by! ', 0, self.attributes-1)
         self.k = self.valid.get_a_number()
         
-    def main(self):
+    def main(self) -> None:
         self.settings()
         for value in sorted(self.arr, key=operator.itemgetter(self.k)):
             print(*value)
