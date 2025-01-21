@@ -11,6 +11,7 @@ def get_valid_number(min_value: int, max_value: int) -> int:
     while True:
         try:
             value = int(input(f'Set a value between {min_value} and {max_value}! '))
+            logger.info(f'You entered {value}. ')
             if value in range(min_value, max_value+1):
                 return value
             logger.error(f'Out of range! Enter a number between {min_value} and {max_value}! ')
