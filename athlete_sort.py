@@ -1,5 +1,12 @@
 import operator
 from typing import List, Optional
+import sys 
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+stream_handler = logging.StreamHandler(sys.stdout)
+logger.addHandler(stream_handler)
 
 class Valid:
     number_of_instances = 0
@@ -12,9 +19,9 @@ class Valid:
                 if valid_number in range(min_value, max_value+1):
                     self.__number = valid_number
                     return
-                print(f'Out of range! Enter a number from {min_value} to {max_value}! ')
+                logger.error(f'Out of range! Enter a number from {min_value} to {max_value}! ')
             except ValueError:
-                print('Invalid value! Only integer is allowed! ')
+                logger.critical('Missing or invalid input! Only integer is allowed! ')
     
     def get_a_number(self) -> int:
         return self.__number
@@ -29,11 +36,11 @@ class Valid:
                     self.__final = result
                     return
                 elif len(result) != length:
-                    print(f'Your list is invalid! The number of values must be {length}! ')
+                    logger.error(f'Invalid number of elements! It must contain {length} values! Try again! ')
                 else:
-                    print(f'Your values are out of range! They must be between {min_value} and {max_value}')
+                    logger.error(f'Values are out of range! They must be between {min_value} and {max_value}')
             except ValueError:
-                print('Only integer is allowed! Try again! ')
+                logger.critical('Invalid or missing input! Only integer is allowed! Try again! ')
 
     def get_a_list(self) -> List[int]:
         return self.__final
