@@ -1,0 +1,6 @@
+2025-01-22 10:48:12,327 - __main__ - INFO - You entered 0. 
+2025-01-22 10:48:12,328 - __main__ - ERROR - Out of range! Enter a number between 1 and 10! 
+2025-01-22 10:48:18,221 - __main__ - CRITICAL - Missing or invalid input! Try again! 
+2025-01-22 10:48:21,094 - __main__ - INFO - You entered 3. 
+2025-01-22 10:48:27,954 - __main__ - ERROR - Invalid number of elements! It must contain 3 values! Try again! 
+2025-01-22 10:48:33,064 - __main__ - CRITICAL - Missing or invalid input! Every value must be integer! Try again! 
