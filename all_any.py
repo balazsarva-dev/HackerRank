@@ -29,15 +29,6 @@ def get_integer_values(expected_length: int) -> List[int]:
             logger.critical('Missing or invalid input! Every value must be integer! Try again! ')
             
 def check_conditions(values_of_a_list: List[int]) -> bool:
-    """
-    Check if all numbers are non-negative and at least one is a palindrome.
-    
-    Args:
-        values_of_a_list (List[int]): List of integers to check
-    
-    Returns:
-        bool: True if conditions are met, False otherwise
-    """
     first_conditional = all(num >= 0 for num in values_of_a_list)
     second_conditional = any(str(value) == str(value)[::-1] for value in values_of_a_list)
     return all([first_conditional, second_conditional])

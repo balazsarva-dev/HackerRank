@@ -20,7 +20,6 @@
 #     list_string.sort(key=str.isdigit)
 #     print(''.join(sort_odd_before_even(list_string)))
 
-# #better solution after understanding the problem
 # from typing import Callable, Optional
 
 # def get_valid_input(prompt: str, condition: Optional[Callable[[str], bool]] = None) -> str:
@@ -43,7 +42,7 @@
 #         if int(number) % 2 == 1:
 #             odds.append(number)        
 #     return ''.join(list_string + odds)
-    
+
 # if __name__ == '__main__':
 #     S = get_valid_input('Enter a string: ', lambda x: len(x) in range(1, 1000))
 #     print(sorting_strings(S))
