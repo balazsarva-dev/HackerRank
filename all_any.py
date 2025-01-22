@@ -46,7 +46,8 @@ def main():
     """Main function to run the program."""
     N = get_valid_number(1, 10)
     values = get_integer_values(N)
-    print(check_conditions(values))
-
+    return check_conditions(values)
+    
 if __name__ == '__main__':
-    main()
+    result = main()
+    print(result)

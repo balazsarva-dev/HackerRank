@@ -20,7 +20,34 @@
 #     list_string.sort(key=str.isdigit)
 #     print(''.join(sort_odd_before_even(list_string)))
 
-#better solution after understanding the problem
+# #better solution after understanding the problem
+# from typing import Callable, Optional
+
+# def get_valid_input(prompt: str, condition: Optional[Callable[[str], bool]] = None) -> str:
+#     while True:
+#         values = input(prompt)
+#         if not values: return 'Sorting1234'
+#         if condition is None or condition(values): return values
+#         print('Invalid input. Try again! ')
+
+# def sorting_strings(some_string: str) -> str:
+#     list_string = list(some_string)   
+#     list_string.sort(key=lambda x: (x.isdigit(), x.isupper(), x.islower(), x))
+#     numbers = []
+#     for char in list_string:
+#         if char.isdigit(): 
+#             list_string.remove(char)
+#             numbers.append(char)
+#     odds, evens = [], []
+#     for number in numbers:
+#         if int(number) % 2 == 1:
+#             odds.append(number)        
+#     return ''.join(list_string + odds)
+    
+# if __name__ == '__main__':
+#     S = get_valid_input('Enter a string: ', lambda x: len(x) in range(1, 1000))
+#     print(sorting_strings(S))
+
 from typing import Callable, Optional
 
 def get_valid_input(prompt: str, condition: Optional[Callable[[str], bool]] = None) -> str:
@@ -31,11 +58,10 @@ def get_valid_input(prompt: str, condition: Optional[Callable[[str], bool]] = No
         print('Invalid input. Try again! ')
 
 def sorting_strings(some_string: str) -> str:
-    list_string = list(some_string)   
-    list_string.sort(key=lambda x: (x.isdigit(), x.isupper(), x))
-    numbers, letters = list(filter(lambda x: x.isdigit(), list_string)), [char for char in list_string if char.isalpha()]
-    odds = list(filter(lambda x: int(x) % 2 == 1, numbers))
-    evens = [num for num in numbers if num not in odds]
+    letters, odds, evens = [], [], []
+    for char in some_string:
+        letters.append(char) if char.isalpha() else odds.append(char) if int(char) % 2 == 1 else evens.append(char)
+    letters.sort(key=lambda x: (x.isupper(), x.islower(), x))
     return ''.join(letters+odds+evens)
     
 if __name__ == '__main__':

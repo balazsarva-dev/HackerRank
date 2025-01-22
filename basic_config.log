@@ -1,0 +1,17 @@
+[2025-01-22 16:42:59,720] INFO - You entered 0. 
+[2025-01-22 16:42:59,721] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-01-22 16:43:03,069] CRITICAL - Missing or invalid input! Try again! 
+[2025-01-22 16:43:08,582] INFO - You entered 3. 
+[2025-01-22 16:43:12,010] ERROR - Invalid number of elements! It must contain 3 values! Try again! 
+[2025-01-22 16:43:16,101] INFO - True
+[2025-01-22 16:46:40,701] INFO - You entered 2. 
+[2025-01-22 16:46:43,656] INFO - True
+[2025-01-22 16:47:28,472] INFO - You entered 0. 
+[2025-01-22 16:47:28,473] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-01-22 16:47:29,707] CRITICAL - Missing or invalid input! Try again! 
+[2025-01-22 16:47:30,858] INFO - You entered 3. 
+[2025-01-22 16:47:32,516] INFO - True
+[2025-01-22 16:49:16,413] INFO - You entered 4. 
+[2025-01-22 16:49:19,585] INFO - None
+[2025-01-22 16:49:47,624] INFO - You entered 2. 
+[2025-01-22 16:50:25,917] INFO - You entered 2. 
