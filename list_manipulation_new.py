@@ -47,7 +47,7 @@ def calling_actions(number_of_actions: int):
             except ValueError:
                 logger.critical('Only integer is allowed! Try again! ')
             except TypeError:
-                logger.error('Invalid number of arguments! Try again! ')
+                logger.critical('Invalid number of arguments! Try again! ')
     return L
 def main():
     N = set_commands()
