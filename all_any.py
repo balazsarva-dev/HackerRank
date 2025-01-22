@@ -1,15 +1,8 @@
 from typing import List
 import logging
-import sys
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-stream_handler = logging.StreamHandler(sys.stdout)
-file_handler = logging.FileHandler('outputs.log')
-logger.addHandler(stream_handler)
-logger.addHandler(file_handler)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
+logging.basicConfig(filename='basic_config.log', level=logging.INFO, format='[%(asctime)s] %(levelname)s - %(message)s')
 
 def get_valid_number(min_value: int, max_value: int) -> int:
     while True:
@@ -18,7 +11,8 @@ def get_valid_number(min_value: int, max_value: int) -> int:
             logger.info(f'You entered {value}. ')
             if value in range(min_value, max_value+1):
                 return value
-            logger.error(f'Out of range! Enter a number between {min_value} and {max_value}! ')
+            else:
+                logger.error(f'Out of range! Enter a number between {min_value} and {max_value}! ')
         except ValueError:
             logger.critical('Missing or invalid input! Try again! ')
             
@@ -34,12 +28,22 @@ def get_integer_values(expected_length: int) -> List[int]:
         except ValueError:
             logger.critical('Missing or invalid input! Every value must be integer! Try again! ')
             
-def check_conditions(values: List[int]) -> bool:
-    first_conditional = all(num >= 0 for num in values)
-    second_conditional = any(str(value) == str(value)[::-1] for value in values)
+def check_conditions(values_of_a_list: List[int]) -> bool:
+    """
+    Check if all numbers are non-negative and at least one is a palindrome.
+    
+    Args:
+        values_of_a_list (List[int]): List of integers to check
+    
+    Returns:
+        bool: True if conditions are met, False otherwise
+    """
+    first_conditional = all(num >= 0 for num in values_of_a_list)
+    second_conditional = any(str(value) == str(value)[::-1] for value in values_of_a_list)
     return all([first_conditional, second_conditional])
 
 def main():
+    """Main function to run the program."""
     N = get_valid_number(1, 10)
     values = get_integer_values(N)
     print(check_conditions(values))
