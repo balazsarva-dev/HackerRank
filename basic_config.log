@@ -15,3 +15,10 @@
 [2025-01-22 16:49:19,585] INFO - None
 [2025-01-22 16:49:47,624] INFO - You entered 2. 
 [2025-01-22 16:50:25,917] INFO - You entered 2. 
+[2025-01-23 08:27:00,617] DEBUG - Starting the program...
+[2025-01-23 08:27:04,698] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 08:27:10,973] INFO - Well done! Your chosen value is 4. 
+[2025-01-23 08:27:18,402] CRITICAL - Invalid number of arguments! Try again! 
+[2025-01-23 08:32:41,330] DEBUG - Starting the program...
+[2025-01-23 08:32:43,980] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 08:32:46,241] INFO - Well done! Your chosen value is 6. 

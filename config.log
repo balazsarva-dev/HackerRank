@@ -1,0 +1,9 @@
+[2025-01-23 08:49:40,174] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 08:50:31,830] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 08:50:36,133] ERROR - Out of range! Value must be between 1 and 10. Try again!
+[2025-01-23 08:50:40,721] CRITICAL - Invalid number of arguments! Try again! 
+[2025-01-23 08:55:31,315] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 08:55:33,849] INFO - Well done! Your chosen value is 4. 
+[2025-01-23 08:56:28,342] INFO - Well done! Your chosen value is 4. 
+[2025-01-23 08:56:50,286] INFO - Well done! Your chosen value is 4. 
+[2025-01-23 08:57:20,611] INFO - Well done! Your chosen value is 4. 

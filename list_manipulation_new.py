@@ -5,9 +5,13 @@ from typing import Callable, List, Dict, Any
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 stream_handler = logging.StreamHandler(sys.stdout)
+file_handler = logging.FileHandler('config.log')
+console_formatter = logging.Formatter('%(levelname)s - %(message)s')
+file_formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+stream_handler.setFormatter(console_formatter)
+file_handler.setFormatter(file_formatter)
 logger.addHandler(stream_handler)
-formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
-stream_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 def take_actions(L: List[Any]) -> Dict[str, Callable]:
     return {'print': lambda: print(L),
@@ -30,7 +34,7 @@ def set_commands(min_value: int = 1, max_value: int = 10) -> int:
         except ValueError:
             logger.critical('Only integer is allowed! Try again! ')
 
-def calling_actions(number_of_actions: int):
+def calling_actions(number_of_actions: int) -> List[Any]:
     L: List[Any] = []
     actions = take_actions(L)
     for _ in range(number_of_actions):
@@ -50,6 +54,7 @@ def calling_actions(number_of_actions: int):
                 logger.critical('Invalid number of arguments! Try again! ')
     return L
 def main():
+    logger.debug('Starting the program...')
     N = set_commands()
     return calling_actions(N)
 
