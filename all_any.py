@@ -13,6 +13,7 @@ def get_valid_number(min_value: int, max_value: int) -> int:
                 return value
             else:
                 logger.error(f'Out of range! Enter a number between {min_value} and {max_value}! ')
+                
         except ValueError:
             logger.critical('Missing or invalid input! Try again! ')
             

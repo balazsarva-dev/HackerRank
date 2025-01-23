@@ -1,0 +1,20 @@
+Error! Invalid pin. Try again.
+Amount Deposited: $900.0
+Transaction Info:
+Status: Successful
+Transaction #292330
+Timestamp: 2025-01-23 21:35:48.520100
+Error! Insufficient balance to complete withdraw.
+Transaction Info:
+Status: Failed
+Transaction #768934
+Error! Invalid pin. Try again.
+Amount Deposited: $50.0
+Transaction Info:
+Status: Successful
+Transaction #735611
+Timestamp: 2025-01-23 21:40:04.998277
+You withdrew: $25.0
+Transaction Info:
+Status: Successful
+Transaction #828357

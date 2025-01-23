@@ -22,3 +22,9 @@
 [2025-01-23 08:32:41,330] DEBUG - Starting the program...
 [2025-01-23 08:32:43,980] CRITICAL - Only integer is allowed! Try again! 
 [2025-01-23 08:32:46,241] INFO - Well done! Your chosen value is 6. 
+[2025-01-23 19:50:53,136] INFO - You entered 0. 
+[2025-01-23 19:50:53,139] INFO - Amount Deposited: $%(amount)s
+Transaction Info:
+Status: Successful
+Transaction #%(random.randint(10000, 1000000))s
+Timestamp: %(datetime.now())s
