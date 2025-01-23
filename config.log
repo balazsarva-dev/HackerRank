@@ -7,3 +7,5 @@
 [2025-01-23 08:56:28,342] INFO - Well done! Your chosen value is 4. 
 [2025-01-23 08:56:50,286] INFO - Well done! Your chosen value is 4. 
 [2025-01-23 08:57:20,611] INFO - Well done! Your chosen value is 4. 
+[2025-01-23 09:30:15,502] CRITICAL - Only integer is allowed! Try again! 
+[2025-01-23 09:30:17,877] INFO - Well done! Your chosen value is 10. 
