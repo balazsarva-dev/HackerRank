@@ -12,6 +12,8 @@ Mallory,32
 Julian,4
 Edward,71
 Rose,65
-Balazs,19
-Lilla,40
-Laszlo,75
+John,25baluka,19
+Zoe,19
+Balazs,20
+Balazs,33
+Lilla,33
