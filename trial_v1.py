@@ -78,7 +78,7 @@ def add_guest(prompt: str) -> None:
             result = guest_validator.send(new_guest)
             data, error = result
             if data and ',' in data:
-                if added_data := add_data_to_a_file(FILENAME, data):
+                if add_data_to_a_file(FILENAME, data):
                     logger.info('Guest added successfully!')
                     return
                 else:
