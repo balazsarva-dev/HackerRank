@@ -12,16 +12,16 @@ logger.addHandler(stream_handler)
 FILENAME = 'guest_list.txt'
 
 def read_guests_from_file(file_name: str) -> Generator[str, None, None]:
-    
     if not file_name:
         logger.error('File name is missing! ')
         return
-    
+
     try:
         with open(file_name, 'r') as file:
             for line in file:
                 if line := line.strip(): 
                     yield line
+
     except FileNotFoundError:
         logger.error('File not found! ')
     except IOError:
@@ -37,6 +37,7 @@ def add_data_to_a_file(file_name: str, data: str) -> bool:
             file.write(f'{data}\n')
             file.flush()
         return True
+
     except IOError as e:
         logger.error(f'Error writing to {file_name}: {e}! ')
         return False
@@ -57,13 +58,13 @@ def validate_guest():
             name, age = guest_input.split()
             if not name.isalpha():
                 yield 'Name must be alphabetic! '
-                
+
             age = int(age)
             if age not in range(18, 101):
                 yield None, 'Guest must be between 18 and 100 years old! '
 
             yield f'{name},{age}', None
-        
+
         except ValueError:
             yield None, 'Age must be number! '
 
@@ -86,15 +87,18 @@ def add_guest(prompt: str) -> None:
                 logger.error(result)
             else:
                 logger.error('Invalid input! Try again!')
+                
         except KeyboardInterrupt:
             logger.info('\nGuest addition cancelled')
             return
             
 if __name__ == '__main__':
     logger.debug('Welcome to guest adding program!')
+    
     try:
         display_guests(FILENAME)
         add_guest('Add new guest: ')
         logger.info('Guest list updated!')
+        
     except Exception as e:
         logger.error(f'An error occurred: {e}')
