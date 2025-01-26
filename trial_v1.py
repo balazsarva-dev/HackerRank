@@ -1,6 +1,6 @@
 import logging
 import sys
-from typing import Generator
+from typing import Optional, Generator, Tuple
 
 logger = logging.getLogger(__name__)
 if not logger.hasHandlers():
@@ -12,7 +12,7 @@ if not logger.hasHandlers():
 
 FILENAME = 'guest_list.txt'
 
-def read_guests_from_file(file_name: str) -> Generator[str, None, None]:
+def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Optional[str]], None, None]:
     if not file_name:
         yield None, 'File name is missing! '
         return
@@ -53,10 +53,10 @@ def display_guests(file_name: str) -> None:
             return
         logger.info(data)
 
-def validate_guest() -> Generator[str, str, None]:
+def validate_guest() -> Generator[Tuple[Optional[str], Optional[str]], Optional[str], None]:
     while True:
         try:
-            guest_input = yield
+            guest_input: Optional[str] = yield
             
             if not guest_input or len(guest_input.split()) != 2:
                 yield None, 'Please enter guest name and age! '
@@ -69,12 +69,12 @@ def validate_guest() -> Generator[str, str, None]:
                 return
 
             try:
-                age = int(age)
-                if age not in range(18, 101):
+                int_age = int(age)
+                if int_age not in range(18, 101):
                     yield None, 'Age must be between 18 and 100! '
                     return
                 
-                yield f'{name},{age}', None
+                yield f'{name},{int_age}', None
             
             except ValueError:
                 yield None, 'Age must be number! '
