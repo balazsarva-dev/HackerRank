@@ -15,6 +15,7 @@ FILENAME = 'guest_list.txt'
 def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Optional[str]], None, None]:
     if not file_name:
         yield None, 'File name is missing! '
+        return
 
     try:
         with open(file_name, 'r') as file:
@@ -30,21 +31,24 @@ def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Opti
         yield None, f'An error occurred: {e}! '
         
 def add_data_to_a_file(file_name: str, data: str) -> bool:
-    if file_name and data:
-        try:
-            with open(file_name, 'a') as file:
-                file.write(f'{data}\n')
-                file.flush()
-            return True
+    if not all([file_name, data]):
+        logger.error('File name or data is missing! ')
+        return False
+    try:
+        with open(file_name, 'a') as file:
+            file.write(f'{data}\n')
+            file.flush()
+        return True
 
-        except IOError as e:
-            logger.error(f'Error writing to {file_name}: {e}! ')
-            return False
-        
-    logger.error('File name or data is missing! ')
-    return False
+    except IOError as e:
+        logger.error(f'Error writing to {file_name}: {e}! ')
+        return False
 
 def display_guests(file_name: str) -> None:
+    if not file_name:
+        logger.error('File name is missing! ')
+        return
+
     logger.info('\nGuest list: \n')
     for data, error in read_guests_from_file(file_name):
         logger.error(error) if error else logger.info(data)
