@@ -15,7 +15,6 @@ FILENAME = 'guest_list.txt'
 def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Optional[str]], None, None]:
     if not file_name:
         yield None, 'File name is missing! '
-        return
 
     try:
         with open(file_name, 'r') as file:
@@ -31,27 +30,24 @@ def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Opti
         yield None, f'An error occurred: {e}! '
         
 def add_data_to_a_file(file_name: str, data: str) -> bool:
-    if not file_name or not data:
-        logger.error('File name or data is missing! ')
-        return False
-    
-    try:
-        with open(file_name, 'a') as file:
-            file.write(f'{data}\n')
-            file.flush()
-        return True
+    if file_name and data:
+        try:
+            with open(file_name, 'a') as file:
+                file.write(f'{data}\n')
+                file.flush()
+            return True
 
-    except IOError as e:
-        logger.error(f'Error writing to {file_name}: {e}! ')
-        return False
+        except IOError as e:
+            logger.error(f'Error writing to {file_name}: {e}! ')
+            return False
         
+    logger.error('File name or data is missing! ')
+    return False
+
 def display_guests(file_name: str) -> None:
     logger.info('\nGuest list: \n')
     for data, error in read_guests_from_file(file_name):
-        if error:
-            logger.error(error)
-            return
-        logger.info(data)
+        logger.error(error) if error else logger.info(data)
 
 def validate_guest() -> Generator:
     while True:
@@ -60,57 +56,47 @@ def validate_guest() -> Generator:
             
             if not guest_input or len(guest_input.split()) != 2:
                 yield None, 'Please enter guest name and age! '
-                return
 
             name, age = guest_input.split()
             
             if not name.isalpha():
                 yield None, 'Name must be alphabetic! '
-                return
 
             try:
                 int_age = int(age)
                 if int_age not in range(18, 101):
                     yield None, 'Age must be between 18 and 100! '
-                    return
-                
                 yield f'{name},{int_age}', None
-            
+
             except ValueError:
                 yield None, 'Age must be number! '
-                return
 
         except Exception as e:
             yield None, f'An error occurred: {e}! '
-            return
         
 def add_guest(prompt: str) -> None:
     guest_validator = validate_guest()
     next(guest_validator)
-    
+
     while True:
         try:
             new_guest = input(prompt)
-            if 'quit' in new_guest.lower():
-                logger.info('Operation cancelled! ')
-                return
-            
+            if new_guest.lower() == 'cancel':
+                return logger.info('Operation cancelled! ')
+
             data, error = guest_validator.send(new_guest)
-            
             if error:
                 logger.error(error)
                 guest_validator = validate_guest()
                 next(guest_validator)
                 continue
-            
+
             if data and add_data_to_a_file(FILENAME, data):
-                logger.info('Guest added successfully to the file!')
-                return
-                                
+                return logger.info('Guest added successfully to the file!')
+
         except KeyboardInterrupt:
-            logger.info('\nGuest addition cancelled')
-            return
-            
+            return logger.info('\nGuest addition cancelled')
+
 if __name__ == '__main__':
     logger.debug('Welcome to guest adding program!')
     while True:
@@ -119,15 +105,12 @@ if __name__ == '__main__':
             if number_of_adding_guests in range(1, 6):
                 break
             logger.error('Invalid range! Enter a number between 1 and 5! ')
-            continue
         except ValueError:
             logger.error('Invalid input! Enter an integer! ')
-    
+
     for _ in range(number_of_adding_guests):
         try:
-            add_guest('Add new guest (name age) or enter "quit": ')
-            
+            add_guest('Add new guest (name age) or enter "cancel": ')
         except Exception as e:
             logger.error(f'An error occurred: {e}')
-    
     display_guests(FILENAME)
