@@ -16,13 +16,11 @@ def read_guests_from_file(file_name: str) -> Generator[Tuple[Optional[str], Opti
     if not file_name:
         yield None, 'File name is missing! '
         return
-
     try:
         with open(file_name, 'r') as file:
             for line in file:
                 if line := line.strip(): 
                     yield line, None
-
     except FileNotFoundError:
         yield None, 'File not found! '
     except IOError:
@@ -39,7 +37,6 @@ def add_data_to_a_file(file_name: str, data: str) -> bool:
             file.write(f'{data}\n')
             file.flush()
         return True
-
     except IOError as e:
         logger.error(f'Error writing to {file_name}: {e}! ')
         return False
@@ -48,7 +45,6 @@ def display_guests(file_name: str) -> None:
     if not file_name:
         logger.error('File name is missing! ')
         return
-
     logger.info('\nGuest list: \n')
     for data, error in read_guests_from_file(file_name):
         logger.error(error) if error else logger.info(data)
@@ -57,12 +53,10 @@ def validate_guest() -> Generator:
     while True:
         try:
             guest_input = yield
-            
             if not guest_input or len(guest_input.split()) != 2:
                 yield None, 'Please enter guest name and age! '
 
             name, age = guest_input.split()
-            
             if not name.isalpha():
                 yield None, 'Name must be alphabetic! '
 
@@ -71,10 +65,8 @@ def validate_guest() -> Generator:
                 if int_age not in range(18, 101):
                     yield None, 'Age must be between 18 and 100! '
                 yield f'{name},{int_age}', None
-
             except ValueError:
                 yield None, 'Age must be number! '
-
         except Exception as e:
             yield None, f'An error occurred: {e}! '
         
