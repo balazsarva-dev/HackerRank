@@ -53,10 +53,10 @@ def display_guests(file_name: str) -> None:
             return
         logger.info(data)
 
-def validate_guest() -> Generator[Tuple[Optional[str], Optional[str]], Optional[str], None]:
+def validate_guest() -> Generator:
     while True:
         try:
-            guest_input: Optional[str] = yield
+            guest_input = yield
             
             if not guest_input or len(guest_input.split()) != 2:
                 yield None, 'Please enter guest name and age! '

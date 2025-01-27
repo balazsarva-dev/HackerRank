@@ -7,7 +7,7 @@ stream_handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(levelname)s - %(message)s')
 logger.addHandler(stream_handler)
 
-def read_data_from_a_file(file_name: str) -> list[str, None]:
+def read_data_from_a_file(file_name: str) -> list:
     try:
         with open(file_name, 'r') as file:
             return file.readlines()
@@ -30,7 +30,7 @@ def add_data_to_a_file(file_name: str, data: str) -> None:
     except IOError:
         logger.error(f'Error writing to {file_name}! ')
 
-def add_guest(prompt: str, file_name: str) -> list:
+def add_guest(prompt: str, file_name: str) -> None:
     while True:
         new_guest = input(prompt).split()
         
@@ -42,8 +42,8 @@ def add_guest(prompt: str, file_name: str) -> list:
             logger.error('Invalid input! Name and age must be entered! Try again! ')
             continue
         
-        name = new_guest[0]
-        if not name.title().isalpha():
+        name = new_guest[0].title()
+        if not name.isalpha():
             logger.error('Name must be alphabetic! ')
             continue
         
