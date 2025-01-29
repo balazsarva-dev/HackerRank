@@ -59,12 +59,14 @@ def validate_guest() -> Generator:
             name, age = guest_input.split()
             if not name.isalpha():
                 yield None, 'Name must be alphabetic! '
+            elif len(name) not in range(3, 21):
+                yield None, 'Name must be between 3 and 21 characters! '
 
             try:
                 int_age = int(age)
                 if int_age not in range(18, 101):
                     yield None, 'Age must be between 18 and 100! '
-                yield f'{name},{int_age}', None
+                yield f'{name.title()},{int_age}', None
             except ValueError:
                 yield None, 'Age must be number! '
         except Exception as e:
@@ -85,7 +87,6 @@ def add_guest(prompt: str) -> None:
                 logger.error(error)
                 guest_validator = validate_guest()
                 next(guest_validator)
-                continue
 
             if data and add_data_to_a_file(FILENAME, data):
                 return logger.info('Guest added successfully to the file!')
