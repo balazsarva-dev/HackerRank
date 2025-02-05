@@ -1,4 +1,5 @@
-def set_update(some_set: set, max_length) -> set:
+def make_one_set(max_length: int) -> set:
+    some_set = set()
     while True:
         some_set.update(set(map(int, input().split())))
         if 0 < len(some_set) < max_length:
@@ -10,19 +11,19 @@ def get_valid_number(min_value: int, max_value: int) -> int:
             value = int(input())
             if value in range(min_value+1, max_value):
                 return value
-        except ValueError:
-            print('Invalid value! Only integer is allowed! ')
+            print('Out of range! ')
+        except ValueError: print('Invalid value! Only integer is allowed! ')
 
-A = set()
-updated_A = set_update(A, max_length=501)
-n = get_valid_number(0, 21)
-counter = 0
-for _ in range(n):
-    some_set = set()
-    updated_set = set_update(some_set, 101)
-    if updated_A.intersection(updated_set) == updated_set:
-        counter += 1
-if counter == n:
-    print(True)
-else:
-    print(False)
+def process(some_set: set, valid_number: int) -> bool:
+    counter = 0
+    for _ in range(valid_number):
+        new_set = make_one_set(max_length=100)
+        counter += 1 if some_set.intersection(new_set) == new_set else 0
+    return counter == valid_number
+
+def main() -> None:
+    set_A, iter_number = make_one_set(max_length=501), get_valid_number(0, 21)
+    print(process(set_A, iter_number))
+
+if __name__ == '__main__':
+    main()

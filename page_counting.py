@@ -15,10 +15,8 @@ def open_a_book(n: int) -> Dict[int, Tuple[int, int]]:
     return {idx : (page, page + 1) for idx, page in enumerate(range(0, n + 1, 2))}
 
 def count_turning_pages(D: Dict[int, Tuple[int, int]], p: int, reverse: Optional[bool] = False) -> int:
-    if reverse:
-        D = dict(reversed(list(D.items())))
-        return [max(D.keys()) - key for key in D if p in D[key]][0]
-    return [key for key in D if p in D[key]][0]
+    D = dict(reversed(D.items())) if reverse else D
+    return [max(D.keys()) - key for key in D if p in D[key]][0] if reverse else [key for key in D if p in D[key]][0]
 
 if __name__ == '__main__':
     fptr = sys.stdout
