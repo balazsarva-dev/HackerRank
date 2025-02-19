@@ -13,48 +13,60 @@ file_handler = logging.FileHandler("formatted.log")
 logger.addHandler(file_handler)
 
 class BankAccount:
+    transactions = 0
+    attempts = 0
+    
     def __init__(self):
         self.balance=100
-        print("Hello! Welcome to the ATM Depot!")
+        logger.info("Hello! Welcome to the ATM Depot! ")
     
     def authenticate(self):
-        while True:
-            pin = int(input("Enter account pin: "))
-            if pin != 1234:
-                logger.error("Error! Invalid pin. Try again.")
+        MAX_ATTEMPTS = 3
+        while MAX_ATTEMPTS > 0:
+            pin = int(input("Enter your pin: "))
+            if pin == 1234:
+                logger.info("Authentication successful! ")
+                return
             else:
-                return None
+                logger.error("Invalid pin. You have %s attempts left. Try again! ", MAX_ATTEMPTS - 1)
+                MAX_ATTEMPTS -= 1
+        logger.error("Maximum attempts reached. Exiting program.")
+        raise SystemExit
 
     def deposit(self):
         try:
             amount=float(input("Enter amount to be deposited: "))
             if amount < 0:
-                logger.warning("Warning! You entered a negative number to deposit.")
+                logger.warning("You entered a negative number to deposit. Try again! ")
+                BankAccount.attempts += 1
+            BankAccount.transactions += 1
             self.balance += amount
             logger.info("Amount Deposited: $%s\nTransaction Info:\nStatus: Successful\nTransaction #%s\nTimestamp: %s",
-            amount, random.randint(10000, 1000000), datetime.now())
+            amount, BankAccount.transactions, datetime.now())
             
         except ValueError:
             logger.error("Error! You entered a non-number value to deposit.")
+            BankAccount.attempts += 1
             logger.info("Transaction Info:\nStatus: Failed\nTransaction #%s\nTimestamp: %s",
-            amount, random.randint(10000, 1000000), datetime.now())
+            BankAccount.transactions, datetime.now())
 
     def withdraw(self):
         try:
             amount = float(input("Enter amount to be withdrawn: "))
             if self.balance >= amount:
                 self.balance -= amount
+                BankAccount.transactions += 1
                 logger.info("You withdrew: $%s\nTransaction Info:\nStatus: Successful\nTransaction #%s",
-                amount, random.randint(10000, 1000000))
+                amount, BankAccount.transactions)
             else:
                 logger.error("Error! Insufficient balance to complete withdraw.\nTransaction Info:\nStatus: Failed\nTransaction #%s",
-                random.randint(10000, 1000000))
+                BankAccount.transactions)
         except ValueError:
             logger.error("Error! You entered a non-number value to withdraw.\nTransaction Info:\nStatus: Failed\nTransaction #%s\nTimestamp: %s",
             random.randint(10000, 1000000), datetime.now())
 
     def display(self):
-        print("Available Balance = $", self.balance)
+        logger.info("Available Balance = $", self.balance)
 
 acct = BankAccount()
 acct.authenticate()

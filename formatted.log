@@ -18,3 +18,28 @@ You withdrew: $25.0
 Transaction Info:
 Status: Successful
 Transaction #828357
+Hello! Welcome to the ATM Depot!
+Error! Invalid pin. Try again.
+Error! Too many attempts. Try again later.
+Error! Invalid pin. Try again.
+Error! Too many attempts. Try again later.
+Error! Invalid pin. Try again.
+Error! Too many attempts. Try again later.
+Hello! Welcome to the ATM Depot!
+Error! Invalid pin. Try again.
+Error! Invalid pin. Try again.
+Error! Invalid pin. Try again.
+Hello! Welcome to the ATM Depot!
+Hello! Welcome to the ATM Depot!
+Invalid pin. Try again. You have 2 attempts left.
+Invalid pin. Try again. You have 1 attempts left.
+Authentication successful!
+Amount Deposited: $0.0
+Transaction Info:
+Status: Successful
+Transaction #1
+Timestamp: 2025-02-18 11:34:15.321944
+You withdrew: $10.0
+Transaction Info:
+Status: Successful
+Transaction #2

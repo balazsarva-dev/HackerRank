@@ -28,3 +28,16 @@ Transaction Info:
 Status: Successful
 Transaction #%(random.randint(10000, 1000000))s
 Timestamp: %(datetime.now())s
+[2025-02-09 17:57:54,875] INFO - You entered 0. 
+[2025-02-09 17:57:54,877] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-02-09 17:57:56,360] INFO - You entered 0. 
+[2025-02-09 17:57:56,360] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-02-09 17:57:56,841] INFO - You entered 0. 
+[2025-02-09 17:57:56,841] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-02-09 17:57:57,455] INFO - You entered 0. 
+[2025-02-09 17:57:57,455] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-02-09 17:57:58,558] INFO - You entered 0. 
+[2025-02-09 17:57:58,558] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-02-09 17:58:00,478] CRITICAL - Missing or invalid input! Try again! 
+[2025-02-09 17:58:04,104] CRITICAL - Missing or invalid input! Try again! 
+[2025-02-09 17:58:06,707] INFO - You entered 2. 
