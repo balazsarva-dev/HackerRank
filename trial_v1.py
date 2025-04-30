@@ -94,20 +94,26 @@ def add_guest(prompt: str) -> None:
         except KeyboardInterrupt:
             return logger.info('\nGuest addition cancelled')
 
-if __name__ == '__main__':
-    logger.debug('Welcome to guest adding program!')
+def get_number_of_adding_guests() -> int:
+    logger.info('Welcome to guest adding program!')
     while True:
         try:
             number_of_adding_guests = int(input('Enter the number of guests to add (1-5): '))
             if number_of_adding_guests in range(1, 6):
-                break
+                return number_of_adding_guests
             logger.error('Invalid range! Enter a number between 1 and 5! ')
         except ValueError:
             logger.error('Invalid input! Enter an integer! ')
 
+def main():
+    number_of_adding_guests = get_number_of_adding_guests()
     for _ in range(number_of_adding_guests):
         try:
             add_guest('Add new guest (name age) or enter "cancel": ')
         except Exception as e:
             logger.error(f'An error occurred: {e}')
     display_guests(FILENAME)
+
+if __name__ == '__main__':
+    logger.info('Program started! ')
+    main()
