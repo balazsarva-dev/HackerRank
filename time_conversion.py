@@ -12,7 +12,8 @@ logger.addHandler(stream_handler)
 
 def valid_time_input(s: str) -> bool:
     """Determine if the input is a valid time."""
-    return bool(re.match(r'^[0-1][0-9]:[0-5][0-9]:[0-5][0-9][AP]M$', s))
+    valid_pattern = r'^[0][0-9]|[1][0-2]:[0-5][0-9]:[0-5][0-9][AP]M$'
+    return bool(re.match(valid_pattern, s))
 
 def get_valid_time_input(prompt: str) -> str:
     """Get and validate time input from user."""
