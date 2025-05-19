@@ -9,7 +9,7 @@ def is_pangram_two(string_: str) -> bool:
 def is_pangram_three(string_: str) -> bool:
     return set(chars).issubset(set(string_.lower()))
 
-def is_pangram_four(st: str) -> bool:  # sourcery skip: invert-any-all, use-any, use-next
+def is_pangram_four(st: str) -> bool:
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
     for char in alphabet:
         if not st.lower().count(char):
