@@ -30,14 +30,17 @@ def main():
                             prompt='Enter the page you want to go to: ',
                             condition=lambda x: 1 <= x <= n
                         )
+    
     result = open_a_book(n)
     forward = count_turning_pages(result, p)
     backward = count_turning_pages(result, p, reverse=True)
     min_result = min([forward, backward])
-    result = 'You can turn the pages in both directions! ' if forward == backward\
+    
+    final_result = 'You can turn the pages in both directions! ' if forward == backward\
         else 'The shortest way to get there is from the front! ' if forward < backward\
         else 'The shortest way to get there is from the back! '
-    fptr.write(result+f'You have to turn {min_result} pages.' + '\n')
+
+    fptr.write(final_result+f'You have to turn {min_result} pages.' + '\n')
     fptr.close()
     
 if __name__ == '__main__':
