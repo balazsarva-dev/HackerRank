@@ -18,7 +18,7 @@ def enter_name() -> str:
             return name.title()
 
 def countdown(seconds: int, feature : str, feature_value : Any) -> None:
-    print(f'Your {feature} appear in')
+    logger.info(f'Your {feature} appear in')
     while seconds > 0:
         logger.info(f'{seconds}...')
         seconds -= 1
