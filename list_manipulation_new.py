@@ -6,8 +6,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 stream_handler = logging.StreamHandler(sys.stdout)
 file_handler = logging.FileHandler('config.log')
-console_formatter = logging.Formatter('%(levelname)s - %(message)s')
-file_formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+console_formatter = logging.Formatter('[%(asctime)s] %(levelname)s - %(message)s')
+file_formatter = console_formatter
 stream_handler.setFormatter(console_formatter)
 file_handler.setFormatter(file_formatter)
 logger.addHandler(stream_handler)
@@ -22,7 +22,7 @@ def take_actions(L: List[Any]) -> Dict[str, Callable]:
             'reverse': L.reverse,
             'insert': L.insert}
 
-def set_commands(min_value: int = 1, max_value: int = 10) -> int:
+def get_valid_number(min_value: int = 1, max_value: int = 10) -> int:
     while True:
         try:
             N = int(input(f'Set a value from {min_value} to {max_value}! '))
@@ -30,9 +30,9 @@ def set_commands(min_value: int = 1, max_value: int = 10) -> int:
                 logger.info(f'Well done! Your chosen value is {N}. ')
                 return N
             else:
-                logger.error(f'Out of range! Value must be between {min_value} and {max_value}. Try again!')
+                logger.warning(f'Out of range! Value must be between {min_value} and {max_value}. Try again!')
         except ValueError:
-            logger.critical('Only integer is allowed! Try again! ')
+            logger.error('Only integer is allowed! Try again! ')
 
 def calling_actions(number_of_actions: int) -> List[Any]:
     L: List[Any] = []
@@ -40,23 +40,29 @@ def calling_actions(number_of_actions: int) -> List[Any]:
     for _ in range(number_of_actions):
         while True:
             command_input = input('Enter your command and the arguments separated by space! ').split()
+            if not command_input or len(command_input) > 3:
+                logger.error('Invalid input! Please enter a command and up to three arguments.')
+                continue
             command = command_input[0]
+            if command not in actions:
+                logger.error(f'Invalid command! Available commands are: {list(actions.keys())}. Try again!')
+                continue
             try:
                 args = map(int, command_input[1:])
-                if command in actions:
-                    actions[command](*args)
-                    break
-                else:
-                    logger.error(f'Invalid command! You must choose from {actions.keys()}! Try again! ')
+                logger.info(f'Command #{_} executed: {command} with arguments {command_input[1:]}.')
+                actions[command](*args)
+                break
             except ValueError:
-                logger.critical('Only integer is allowed! Try again! ')
+                logger.error('Only integer is allowed! Try again! ')
             except TypeError:
-                logger.critical('Invalid number of arguments! Try again! ')
+                logger.error('Invalid number of arguments! Try again! ')
+    logger.info(f'Final list: {L}')
     return L
+
 def main():
-    logger.debug('Starting the program...')
-    N = set_commands()
-    return calling_actions(N)
+    logger.info('Starting the program...')
+    number_of_commands = get_valid_number()
+    return calling_actions(number_of_commands)
 
 if __name__ == '__main__':
-    print(main())
+    main()

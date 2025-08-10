@@ -1,37 +1,39 @@
 from collections import Counter
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
 
 def get_valid_number(prompt: str, min_val:int, max_val:int) -> int:
     while True:
         try:
             value = int(input(prompt))
             if min_val < value < max_val:
+                logger.info(f"You entered a valid number: {value}")
                 return value
-            print('Invalid number! Try again! ')
+            else:
+                logger.warning(f"You entered an invalid number: {value}")
         except ValueError:
-            print('Only integer is allowed! Try again! ')
+            logger.error('Only integer is allowed! Try again! ')
 
 def get_a_valid_list(length_of_list: int, min_value: int, max_value: int) -> list:
     while True:
         try:
-            values = list(map(int, input(f'Enter a value from ({min_value} to {max_value}) {length_of_list} times! ').split()))
+            values = list(map(int, input(f'Enter the shoe sizes from ({min_value} to {max_value}) {length_of_list} times! ').split()))
             if len(values) != length_of_list:
-                print(f'Invalid number of elements! It must contain {length_of_list} values! Try again!')
+                logger.warning(f'Invalid number of elements! It must contain {length_of_list} values! Try again!')
+            if not all([value in range(min_value, max_value+1) for value in values]):
+                logger.warning(f"You entered invalid values: {values}")
             else:
-                for value in values:
-                    idx = values.index(value)
-                    if value not in range(min_value, max_value+1):
-                        while True:
-                            new_value = int(input(f'Enter a new value from {min_value} and {max_value} instead of {value}! '))
-                            if new_value in range(min_value, max_value+1):
-                                values[idx] = new_value
-                                break
+                logger.info(f"You entered valid values: {values}")
                 return values
-        except ValueError: print('ValueError! Only integer is allowed! ')
+        except ValueError:
+            logger.error('ValueError! Only integer is allowed! ')
 
 if __name__ == '__main__':
-    number_of_shoes = get_valid_number('Number of shoes (1-9): ', 0, 10)
+    number_of_shoes = get_valid_number('Enter the available number of shoes (1-9) in the shop: ', 0, 10)
     shoe_sizes = get_a_valid_list(length_of_list=number_of_shoes, min_value=1, max_value=10)
-    number_of_customs = get_valid_number('Number of customers in the shop (1-9): ', 0, 10)
+    number_of_customs = get_valid_number('Enter the number of customers in the shop (1-9): ', 0, 10)
     shoes_available = Counter(shoe_sizes)
     customs_inquiries = {}
     total_revenue = 0
@@ -41,4 +43,4 @@ if __name__ == '__main__':
         if size in shoes_available and shoes_available[size] != 0:
             total_revenue += price
             shoes_available[size] -= 1
-    print(total_revenue)
+    logger.info(f'Total revenue: {total_revenue}')

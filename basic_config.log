@@ -41,3 +41,11 @@ Timestamp: %(datetime.now())s
 [2025-02-09 17:58:00,478] CRITICAL - Missing or invalid input! Try again! 
 [2025-02-09 17:58:04,104] CRITICAL - Missing or invalid input! Try again! 
 [2025-02-09 17:58:06,707] INFO - You entered 2. 
+[2025-08-09 23:43:28,803] INFO - You entered 0. 
+[2025-08-09 23:43:28,804] ERROR - Out of range! Enter a number between 1 and 10! 
+[2025-08-09 23:43:31,249] INFO - You entered 3. 
+[2025-08-09 23:43:47,844] INFO - You entered 3. 
+[2025-08-09 23:44:03,913] INFO - You entered 4. 
+[2025-08-09 23:44:12,205] ERROR - Invalid number of elements! It must contain 4 values! Try again! 
+[2025-08-09 23:44:14,451] ERROR - Invalid number of elements! It must contain 4 values! Try again! 
+[2025-08-09 23:44:18,754] ERROR - Invalid number of elements! It must contain 4 values! Try again! 

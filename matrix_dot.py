@@ -1,11 +1,11 @@
 from numpy import typing, array, dot
 from typing import Callable
 
-def get_valid_number(prompt: str, condition: Callable) -> int:
+def get_valid_number(prompt: str, condition: Callable = None) -> int:
     while True:
         try:
             N = int(input(prompt))
-            if condition(N):
+            if condition is None or condition(N):
                 return N
             else:
                 print('The input is invalid! Try again! ')
