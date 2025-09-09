@@ -26,10 +26,10 @@ class Valid:
                 if valid_number in range(min_value, max_value+1):
                     self._number = valid_number
                     return
-                logger.error(f'Out of range! Enter a number from {min_value} to {max_value}! ')
+                logger.warning(f'Out of range! Enter a number from {min_value} to {max_value}! ')
             except ValueError:
-                logger.critical('Missing or invalid input! Only integer is allowed! ')
-    
+                logger.error('Missing or invalid input! Only integer is allowed! ')
+
     def get_a_number(self) -> int:
         return self._number
     
@@ -51,11 +51,11 @@ class Valid:
                     self._final = result
                     return
                 elif len(result) != length:
-                    logger.error(f'Invalid number of elements! It must contain {length} values! Try again! ')
+                    logger.warning(f'Invalid number of elements! It must contain {length} values! Try again! ')
                 else:
-                    logger.error(f'Values are out of range! They must be between {min_value} and {max_value}')
+                    logger.warning(f'Values are out of range! They must be between {min_value} and {max_value}')
             except ValueError:
-                logger.critical('Invalid or missing input! Only integer is allowed! Try again! ')
+                logger.error('Invalid or missing input! Only integer is allowed! Try again! ')
 
     def get_a_list(self) -> List[int]:
         return self._final
@@ -69,7 +69,10 @@ class Valid:
             if value in args:
                 self._string = value
                 return
-            
+            else:
+                logger.warning(f'Invalid input! It must be one of the following: {", ".join(args)}! Try again! ')
+                continue
+
     def get_a_string(self) -> str:
         return self._string
 
