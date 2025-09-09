@@ -49,3 +49,19 @@ Timestamp: %(datetime.now())s
 [2025-08-09 23:44:12,205] ERROR - Invalid number of elements! It must contain 4 values! Try again! 
 [2025-08-09 23:44:14,451] ERROR - Invalid number of elements! It must contain 4 values! Try again! 
 [2025-08-09 23:44:18,754] ERROR - Invalid number of elements! It must contain 4 values! Try again! 
+[2025-09-09 16:42:33,429] INFO - You entered 0. 
+[2025-09-09 16:42:33,439] WARNING - Out of range! Enter a number between 1 and 10! 
+[2025-09-09 16:42:34,692] INFO - You entered 11. 
+[2025-09-09 16:42:34,692] WARNING - Out of range! Enter a number between 1 and 10! 
+[2025-09-09 16:42:40,339] INFO - You entered 4. 
+[2025-09-09 16:42:46,607] ERROR - Invalid input! Every value must be integer! Try again! 
+[2025-09-09 16:42:55,097] INFO - Result: True
+[2025-09-09 16:43:38,981] INFO - You entered 4. 
+[2025-09-09 16:43:43,925] INFO - Result: True
+[2025-09-09 16:43:54,698] INFO - You entered 4. 
+[2025-09-09 16:44:37,888] INFO - You entered 4. 
+[2025-09-09 16:44:42,312] WARNING - Invalid number of elements! It must contain 4 values! Try again! 
+[2025-09-09 16:44:50,157] INFO - False
+[2025-09-09 16:44:57,058] ERROR - Missing or invalid input! Try again! 
+[2025-09-09 16:44:58,918] INFO - You entered 3. 
+[2025-09-09 16:45:03,007] INFO - True

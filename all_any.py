@@ -2,14 +2,14 @@ from typing import List
 import logging
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='basic_config.log', level=logging.INFO, format='[%(asctime)s] %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s - %(message)s')
 
 def get_valid_number(min_value: int, max_value: int) -> int:
     while True:
         try:
             value = int(input(f'Set a value between {min_value} and {max_value}! '))
             logger.info(f'You entered {value}. ')
-            if value in range(min_value, max_value+1):
+            if min_value <= value <= max_value:
                 return value
             else:
                 logger.warning(f'Out of range! Enter a number between {min_value} and {max_value}! ')
@@ -26,7 +26,7 @@ def get_integer_values(expected_length: int) -> List[int]:
             int_values = list(map(int, values))
             return int_values
         except ValueError:
-            logger.error('Missing or invalid input! Every value must be integer! Try again! ')
+            logger.error('Invalid input! Every value must be integer! Try again! ')
 
 def check_conditions(values_of_a_list: List[int]) -> bool:
     first_conditional = all(num >= 0 for num in values_of_a_list)
@@ -40,4 +40,4 @@ def main():
     
 if __name__ == '__main__':
     result = main()
-    print(result)
+    logger.info(result)
