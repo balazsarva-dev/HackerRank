@@ -99,7 +99,7 @@ class Process:
         self.valid.set_a_number('Enter the attribute to sort by! ', 0, self.attributes-1)
         self.k = self.valid.get_a_number()
         
-    def main(self) -> None:
+    def main(self) -> List[List[int]]:
         self.settings()
         sorted_athletes = sorted(self.arr, key=operator.itemgetter(self.k))
         return sorted_athletes

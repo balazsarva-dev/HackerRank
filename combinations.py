@@ -1,16 +1,26 @@
 from itertools import combinations
 
-if __name__ == '__main__':
+def validate_input(prompt: str, min_value: int, max_value: int) -> int:
+    """Validates and returns an integer input within a specified range."""
     while True:
-        S, k = input().upper().split()
         try:
-            k = int(k)
-            if k in range(1, len(S)+1):
-                for counter in range(1, k+1):
-                    combinations_ = combinations(sorted(S), counter)
-                    for value in combinations_:
-                        print(''.join(value))
-                break
-            print(f'Enter a valid k size from 1 to {len(S)}')
+            value = int(input(prompt))
+            if min_value <= value <= max_value:
+                return value
+            print(f"Value must be between {min_value} and {max_value}. Please try again.")
         except ValueError:
-            print('Only integer is allowed! Try again! ')
+            print("Invalid input! Please enter an integer.")
+
+def generate_combinations(S: str, k: int):
+    """Generates and prints combinations for all lengths up to k."""
+    for i in range(1, k + 1):
+        for combination in combinations(sorted(S), i):
+            print(''.join(combination))
+
+def main():
+    S = input("Enter a string: ").upper()
+    k = validate_input(f"Enter the maximum size of combinations (1-{len(S)}): ", 1, len(S))
+    generate_combinations(S, k)
+
+if __name__ == '__main__':
+    main()
