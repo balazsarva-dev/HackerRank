@@ -11,24 +11,28 @@ def migratoryBirds(arr):
     logger.info(f'Most common bird type: {result}')
     return result
 
-def get_bird_sightings():
+def get_bird_sightings(min_val=1, max_val=99):
     while True:
         try:
             arr_count = int(input("Enter the number of bird sightings: ").strip())
-            if arr_count in range(1, 100):
+            if min_val <= arr_count <= max_val:
                 return arr_count
-            logger.error("Invalid input! Please enter an integer between 1 and 99.")
+            logger.warning(f"RangeWarning: Please enter an integer between {min_val} and {max_val}.")
         except ValueError:
-            logger.error("Invalid input! Please enter an integer between 1 and 99.")
+            logger.error(f"Invalid input! Please enter an integer.")
 
 def main():
     number_of_observations = get_bird_sightings()
+    bird_types = get_bird_types(number_of_observations)
+    migratoryBirds(bird_types)
+
+def get_bird_types(expected_length):
     while True:
         try:
             arr = list(map(int, input("Enter the bird types: ").rstrip().split()))
-            if len(arr) == number_of_observations:
-                return migratoryBirds(arr)
-            logger.error("Invalid input! Please enter exactly {} integers.".format(number_of_observations))
+            if len(arr) == expected_length:
+                return arr
+            logger.warning(f"Invalid input! Please enter exactly {expected_length} integers.")
         except ValueError:
             logger.error("Invalid input! Please enter integers only.")
 
