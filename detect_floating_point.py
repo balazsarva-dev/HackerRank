@@ -1,50 +1,41 @@
 import re
 
-# def valid_float_number_1(string: str) -> bool:
-    
-#     if string.count('.') != 1 or string[-1] == '.':
-#         return False
-    
-#     elif string[0] == '.':
-#         return bool(string[1:].isdigit())
-
-#     elif string.startswith('+') or string.startswith('-'):
-#         if string[1] == '.':
-#             return bool(string[2:].isdigit())
-#         else:
-#             return bool(string[1:string.find('.')].isdigit() and string[string.find('.')+1:].isdigit())
-
-#     elif string[0].isdigit():
-#         return bool(string[:string.find('.')].isdigit() and string[string.find('.')+1:].isdigit())
-#     else:
-#         return False
 def valid_float_number_2(string: str) -> bool:
     # Basic validation
     if not string or string.count('.') != 1:
         return False
-        
     # Split into parts
     left, right = string.split('.')
-    
     # Empty decimal part or just a dot
     if not right:
         return False
-        
     # Handle signs
     if left and left[0] in '+-':
         left = left[1:]
-        
     # Validate both parts are digits
     return (not left or left.isdigit()) and right.isdigit()
 
-def valid_float_number_3(string: str) -> bool:
+def valid_float_number(string: str) -> bool:
+    """
+    Validates if the given string is a valid floating-point number.
+
+    :param string: The string to validate.
+    :return: True if the string is a valid floating-point number, False otherwise.
+    """
     pattern = r'^[+-]?[0-9]*\.[0-9]+$'
     return bool(re.match(pattern, string))
 
-if __name__ == '__main__':
-    while True:
-        T = int(input())
-        if T in range(1, 10):
-            break
+def main():
+    """
+    Main function to validate multiple floating-point numbers.
+    """
+    T = int(input("Enter the number of test cases (1-9): "))
+    if not (1 <= T <= 9):
+        raise ValueError("The number of test cases must be between 1 and 9.")
+    
     for _ in range(T):
-        print(valid_float_number_2(input()))
+        test_string = input("Enter a string to validate: ")
+        print(valid_float_number(test_string))
+
+if __name__ == '__main__':
+    main()
