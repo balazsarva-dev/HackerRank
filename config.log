@@ -89,3 +89,16 @@
 [2025-08-10 13:18:40,560] INFO - Command #8 executed: pop with arguments [].
 [2025-08-10 13:18:44,663] INFO - Command #9 executed: pop with arguments [].
 [2025-08-10 13:18:44,665] INFO - Final list: [1230, 900, 700]
+[2025-09-23 09:30:50,357] INFO - Starting the program...
+[2025-09-23 09:30:50,361] ERROR - Only integer is allowed! Try again! 
+[2025-09-23 09:31:00,114] WARNING - Out of range! Value must be between 1 and 10. Try again!
+[2025-09-23 09:31:01,961] ERROR - Only integer is allowed! Try again! 
+[2025-09-23 09:31:05,710] INFO - Well done! Your chosen value is 4. 
+[2025-09-23 09:31:14,357] INFO - Command #0 executed: append with arguments ['190', '20'].
+[2025-09-23 09:31:14,359] ERROR - Missing, or invalid number of arguments! Try again! 
+[2025-09-23 09:31:28,586] INFO - Command #0 executed: append with arguments ['190'].
+[2025-09-23 09:31:41,834] INFO - Command #1 executed: insert with arguments ['190', '0'].
+[2025-09-23 09:31:49,717] INFO - Command #2 executed: append with arguments ['980'].
+[2025-09-23 09:31:57,279] INFO - Command #3 executed: print with arguments [].
+[2025-09-23 09:31:57,280] INFO - [190, 0, 980]
+[2025-09-23 09:31:57,281] INFO - Final list: [190, 0, 980]

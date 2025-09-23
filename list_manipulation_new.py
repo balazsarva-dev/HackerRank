@@ -14,7 +14,7 @@ logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 
 def take_actions(L: List[Any]) -> Dict[str, Callable]:
-    return {'print': lambda: print(L),
+    return {'print': lambda: logger.info(L),
             'remove': L.remove,
             'append': L.append,
             'sort': L.sort,
@@ -53,9 +53,9 @@ def calling_actions(number_of_actions: int) -> List[Any]:
                 actions[command](*args)
                 break
             except ValueError:
-                logger.error('Only integer is allowed! Try again! ')
+                logger.error('Only integer is allowed regarded arguments! Try again! ')
             except TypeError:
-                logger.error('Invalid number of arguments! Try again! ')
+                logger.error('Missing, or invalid number of arguments! Try again! ')
     logger.info(f'Final list: {L}')
     return L
 

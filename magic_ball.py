@@ -13,54 +13,40 @@ def get_name() -> str:
         else:
             return name.title()
 
-def get_possible_questions() -> list:
-    return [
-            "What is your name?",
-            "What is your quest?",
-            "What is the airspeed velocity of an unladen swallow?",
-            "What is the meaning of life?",
-            "What is your favorite color?",
-            "What is your favorite food?",
-            "What is your favorite movie?",
-            "What is your favorite book?",
-            "What is your favorite hobby?",
-            "What is your dream job?"
-            ]
-
-def get_answers() -> dict:
+def get_questions_answers() -> dict:
     return {
-            1: "Yes - definitely",
-            2: "It is decidedly so",
-            3: "Without a doubt",
-            4: "Reply hazy, try again",
-            5: "Ask again later",
-            6: "Better not tell you now",
-            7: "My sources say no",
-            8: "Outlook not so good",
-            9: "Very doubtful"
+            "What is your name?": ["You already know my name!", "I don't know, you tell me!", "Why do you ask?"],
+            "What is your quest?": ["To seek the Holy Grail!", "To find the meaning of life.", "To learn Python."],
+            "What is the airspeed velocity of an unladen swallow?": ["African or European?", "I have no idea.", "About 24 miles per hour."],
+            "What is the meaning of life?": ["Reply hazy, try again", "42", "Life is what you make of it."],
+            "What is your favorite color?": ["Blue", "Red", "Green"],
+            "What is your favorite food?": ["Pizza", "Sushi", "Ice Cream"],
+            "What is your favorite movie?": ["The Matrix", "Inception", "Interstellar"],
+            "What is your favorite book?": ["1984", "To Kill a Mockingbird", "The Great Gatsby"],
+            "What is your favorite hobby?": ["Reading", "Traveling", "Gaming"],
+            "What is your dream job?": ["Professional Gamer", "Astronaut", "Chef"],
             }
-    
+
 def init_game() -> tuple:
     name = get_name()
-    questions = get_possible_questions()
-    return name, questions
+    questions_answers = get_questions_answers()
+    return name, questions_answers
 
-def play_game(name: str, questions: list) -> None:
+def play_game(name: str, questions_answers: dict) -> None:
     logger.info(f"Hello {name}, welcome to the Magic 8 Ball game!")
     logger.info("You can ask me any question and I will give you an answer.")
     
     while True:
-        answers = get_answers()
         question = input("Ask a question or enter 'exit': ")
         if question.lower() == "exit":
             logger.info("Goodbye!")
             break
-        elif question not in questions:
+        elif not question or question not in questions_answers:
             logger.info("I don't know the answer to that question.")
         else:
             import random
-            random_answer = random.randint(4, 6)
-            answer = answers[random_answer]
+            random_choice = random.randint(0, len(questions_answers[question]) - 1)
+            answer = questions_answers[question][random_choice]
             logger.info(f"Magic 8 Ball says: {answer}")
 
 def main() -> None:
