@@ -1,20 +1,24 @@
 import sys
-from typing import Callable, Optional, Tuple, Dict
+from typing import Callable, Tuple, Dict
+import logging
 
-def get_valid_number(prompt: str, condition: Optional[Callable[[int], bool]] = None) -> int:
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format='%(levelname)s - %(message)s')
+
+def get_valid_number(prompt: str, condition: Callable[[int], bool] | None) -> int:
     while True:
         try:
             n = int(input(prompt))
             if condition is None or condition(n):
                 return n
-            print('The input is invalid! Try again! ')
+            logger.warning('The input is invalid! Try again! ')
         except ValueError:
-            print('You need to input an integer! Try again! ')
-        
+            logger.error('You need to input an integer! Try again! ')
+
 def open_a_book(n: int) -> Dict[int, Tuple[int, int]]:
     return {idx : (page, page + 1) for idx, page in enumerate(range(0, n + 1, 2))}
 
-def count_turning_pages(D: Dict[int, Tuple[int, int]], p: int, reverse: Optional[bool] = False) -> int:
+def count_turning_pages(D: Dict[int, Tuple[int, int]], p: int, reverse: bool = False) -> int:
     D = dict(reversed(D.items())) if reverse else D
     return [max(D.keys()) - key for key in D\
             if p in D[key]][0] if reverse\
