@@ -12,13 +12,6 @@ class Valid:
     number_of_instances = 0
     
     def set_a_number(self, prompt: str, min_value: int, max_value: int, input_value: Optional[str] = None) -> None:
-        """
-        Request a valid integer input within a specified range.
-        :param prompt: The message to display to the user.
-        :param min_value: The minimum acceptable integer (inclusive).
-        :param max_value: The maximum acceptable integer (inclusive).
-        :param input_value: Optional string input for testing purposes.
-        """
         Valid.number_of_instances += 1
         while True:
             try:
@@ -34,14 +27,6 @@ class Valid:
         return self._number
     
     def set_a_list(self, prompt: str, length: int, min_value: int, max_value: int, input_values: Optional[str] = None) -> None:
-        """
-        Request a list of integers of specified length within a given range.
-        :param prompt: The message to display to the user.
-        :param length: The required length of the list.
-        :param min_value: The minimum acceptable integer (inclusive).
-        :param max_value: The maximum acceptable integer (inclusive).
-        :param input_values: Optional string input for testing purposes.
-        """
         Valid.number_of_instances += 1
         while True:
             values = (input_values if input_values is not None else input(prompt)).split()
@@ -61,9 +46,6 @@ class Valid:
         return self._final
 
     def set_a_string(self, prompt, *args) -> None:
-        """Request a string input from the user, ensuring it is one of the allowed values.
-        :param prompt: The message to display to the user.
-        :param args: The acceptable string values."""
         while True:
             value = input(prompt)
             if value in args:

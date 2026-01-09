@@ -5,13 +5,6 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def make_a_list(length: int, min_val: int, max_val: int) -> list:
-    """
-    Asks the user to input a list and checks if it is of the given length and within the given range.
-    :param length: The length of the list.
-    :param min_val: The minimum value of the elements.
-    :param max_val: The maximum value of the elements.
-    :return: The valid list.
-    """
     while True:
         values = input(f'Setup a list! Length must be {length}! Values between: {min_val}-{max_val}: ').split()
         try:
@@ -26,14 +19,9 @@ def make_a_list(length: int, min_val: int, max_val: int) -> list:
             logger.error('Only integer is allowed! ')
 
 def getMoneySpent(keyboards: list[int], drives: list[int], budget: int) -> int:
-    """Computes the maximum amount of money that can be spent on one keyboard and one USB drive without exceeding the budget."""
     return max((s for s in (sum(pair) for pair in product(keyboards, drives)) if s <= budget), default=-1)
 
 def setup_bnm() -> list[int]:
-    """
-    Asks the user to input the budget, number of keyboards, and number of drives, and checks if they are valid.
-    :return: A list containing the budget, number of keyboards, and number of drives.
-    """
     while True:
         values = input('Setup budget, and the number of keyboards and drives: ').split()
         try:
