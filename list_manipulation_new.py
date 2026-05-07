@@ -39,7 +39,7 @@ def calling_actions(number_of_actions: int) -> List[Any]:
     actions = take_actions(L)
     for _ in range(number_of_actions):
         while True:
-            command_input = input('Enter your command and the arguments separated by space! ').split()
+            command_input = input(f'Enter your command and the arguments {list(actions.keys())} separated by space! ').split()
             if not command_input or len(command_input) > 3:
                 logger.error('Invalid input! Please enter a command and up to three arguments.')
                 continue
